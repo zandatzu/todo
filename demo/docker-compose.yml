@@ -3,10 +3,15 @@ version: '3.1'
 
 services:
 
+  application:
+    build: .
+    ports:
+      - 8080:8080
   db:
     image: mariadb
     restart: always
     environment:
+      - "MARIADB_USERNAME=root"
       - "MARIADB_ROOT_PASSWORD=example"
     volumes:
       - ./db/seeds/prod:/docker-entrypoint-initdb.d/
